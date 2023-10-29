@@ -1,0 +1,26 @@
+.root {
+    -fx-background-image: url("img/background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 600;
+    -fx-background-position: center center;
+}
+
+.blue {
+    -fx-background-color: #71cafe;
+}
+
+.orange {
+    -fx-background-color: #ff8c34;
+}
+
+.red {
+    -fx-background-color: #ea2b23;
+}
+
+.green {
+    -fx-background-color: #afd369;
+}
+
+.menu-button {
+    /* */
+}

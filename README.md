@@ -1,0 +1,1 @@
+This is a simple Java implementation of the board game Gobblet Gobblers. The interface is built with the GUI library JavaFX.
