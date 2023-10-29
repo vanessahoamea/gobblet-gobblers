@@ -1,17 +1,18 @@
 package com.game.gobbletgobblers.board;
 
+import com.game.gobbletgobblers.util.ImageLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Piece
 {
     private final Size size;
     private final Color color;
-    private final String icon;
 
     public Piece(Size size, Color color)
     {
         this.size = size;
         this.color = color;
-        this.icon = "img/" + size.toString().toLowerCase() + "-" +
-                color.toString().toLowerCase() + ".png";
     }
 
     public Size getSize()
@@ -24,29 +25,35 @@ public class Piece
         return color;
     }
 
-    public String getIcon()
+    public ImageView getImage()
     {
-        return icon;
-    }
+        Image image;
+        ImageView imageView;
 
-    @Override
-    public String toString()
-    {
-        var str = new StringBuilder();
-
-        switch(size)
+        if(color == Color.BLUE)
         {
-            case LARGE -> str.append("L");
-            case MEDIUM -> str.append("M");
-            case SMALL -> str.append("S");
+            image = switch(size)
+            {
+                case SMALL -> ImageLoader.getSmallBluePiece();
+                case MEDIUM -> ImageLoader.getMediumBluePiece();
+                case LARGE -> ImageLoader.getLargeBluePiece();
+            };
+        }
+        else
+        {
+            image = switch(size)
+            {
+                case SMALL -> ImageLoader.getSmallOrangePiece();
+                case MEDIUM -> ImageLoader.getMediumOrangePiece();
+                case LARGE -> ImageLoader.getLargeOrangePiece();
+            };
         }
 
-        switch(color)
-        {
-            case BLUE -> str.append("B");
-            case ORANGE -> str.append("O");
-        }
+        imageView = new ImageView(image);
+        imageView.setFitHeight(130.0);
+        imageView.setFitWidth(130.0);
+        imageView.setPickOnBounds(true);
 
-        return str.toString();
+        return imageView;
     }
 }

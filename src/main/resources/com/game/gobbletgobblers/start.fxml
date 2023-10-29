@@ -4,12 +4,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
-   <Button layoutX="393.0" layoutY="275.0" mnemonicParsing="false" onAction="#startNewGame" text="New Game">
-      <font>
-         <Font size="20.0"/>
-      </font>
-   </Button>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
+   <AnchorPane layoutX="150.0" layoutY="150.0" prefHeight="300.0" prefWidth="600.0" styleClass="menu-container">
+      <Button layoutX="200.0" layoutY="15.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0"
+              mnemonicParsing="false" onAction="#startNewGame" text="New Game">
+         <font>
+            <Font size="20.0"/>
+         </font>
+      </Button>
+      <Button layoutX="200.0" layoutY="75.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0"
+              mnemonicParsing="false" onAction="#exitGame" text="Exit">
+         <font>
+            <Font size="20.0"/>
+         </font>
+      </Button>
+   </AnchorPane>
 </AnchorPane>

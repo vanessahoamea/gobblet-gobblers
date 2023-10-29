@@ -5,27 +5,16 @@ import java.util.Stack;
 
 public class Board
 {
-    private final Stack<Piece>[][] board;
+    private Stack<Piece>[][] board;
     private Color turn;
     private Color winner;
+    private int freeSquares;
     private boolean isMoving;
     private int[] movingFrom;
 
     public Board()
     {
-        board = new Stack[3][3];
-        for(int i=0; i<3; i++)
-        {
-            for(int j=0; j<3; j++)
-            {
-                board[i][j] = new Stack<>();
-            }
-        }
-
-        turn = Color.ORANGE;
-        winner = null;
-        isMoving = false;
-        movingFrom = new int[]{ -1 , -1 };
+        reset();
     }
 
     public Color getTurn()
@@ -43,36 +32,41 @@ public class Board
         turn = (turn == Color.ORANGE) ? Color.BLUE : Color.ORANGE;
     }
 
-    public boolean placePiece(int row, int col, Piece piece)
+    public void placePiece(int row, int col, Piece piece) throws IllegalStateException
     {
         if(isMoving && movingFrom[0] == row && movingFrom[1] == col)
-            return false;
+            throw new IllegalStateException("You must place the piece in a new square after selecting it!");
 
         if(board[row][col].isEmpty())
         {
             board[row][col].push(piece);
+            freeSquares--;
 
             isMoving = false;
             movingFrom[0] = -1; movingFrom[1] = -1;
 
-            return true;
+            return;
         }
 
         if(board[row][col].size() < 3)
         {
             Piece lastPlaced = board[row][col].peek();
+
             if(piece.getSize().ordinal() > lastPlaced.getSize().ordinal())
             {
                 board[row][col].push(piece);
+                freeSquares--;
 
                 isMoving = false;
                 movingFrom[0] = -1; movingFrom[1] = -1;
-
-                return true;
             }
+            else
+                throw new IllegalStateException("This piece is too small to be placed here!");
+
+            return;
         }
 
-        return false;
+        throw new IllegalStateException("This piece is too small to be placed here!");
     }
 
     public Piece movePiece(int row, int col)
@@ -137,24 +131,24 @@ public class Board
             // do nothing
         }
 
-        return false;
+        return freeSquares == 0;
     }
 
-    @Override
-    public String toString()
+    public void reset()
     {
-        var str = new StringBuilder();
-
+        board = new Stack[3][3];
         for(int i=0; i<3; i++)
         {
             for(int j=0; j<3; j++)
             {
-                str.append(board[i][j].isEmpty() ? "__" : board[i][j].peek());
-                str.append(" ");
+                board[i][j] = new Stack<>();
             }
-            str.append("\n");
         }
 
-        return str.toString();
+        turn = Color.ORANGE;
+        winner = null;
+        freeSquares = 9;
+        isMoving = false;
+        movingFrom = new int[]{ -1 , -1 };
     }
 }

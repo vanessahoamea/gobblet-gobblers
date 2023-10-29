@@ -5,22 +5,29 @@
     -fx-background-position: center center;
 }
 
+.menu-container {
+    -fx-border-color: blue;
+}
+
+.menu-button {
+    /* */
+}
+
+.board-container {
+    -fx-background-color: #ba6433;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, black, 20, 0, 0, 0);
+}
+
+.pieces-container {
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, black, 20, 0, 0, 0);
+}
+
 .blue {
     -fx-background-color: #71cafe;
 }
 
 .orange {
     -fx-background-color: #ff8c34;
-}
-
-.red {
-    -fx-background-color: #ea2b23;
-}
-
-.green {
-    -fx-background-color: #afd369;
-}
-
-.menu-button {
-    /* */
 }
