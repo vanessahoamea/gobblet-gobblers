@@ -3,10 +3,7 @@
     -fx-background-repeat: stretch;
     -fx-background-size: 900 600;
     -fx-background-position: center center;
-}
-
-.menu-container {
-    -fx-border-color: blue;
+    -fx-focus-color: transparent;
 }
 
 .menu-button {

@@ -22,6 +22,9 @@ import java.io.IOException;
 public class GobbletGobblersController
 {
     @FXML private Label turnLabel;
+    @FXML private AnchorPane squaresContainer;
+    @FXML private AnchorPane bluePiecesContainer;
+    @FXML private AnchorPane orangePiecesContainer;
     @FXML private ImageView largeBlueImage;
     @FXML private Label largeBlueCount;
     @FXML private ImageView mediumBlueImage;
@@ -68,10 +71,44 @@ public class GobbletGobblersController
         stage.show();
     }
 
+    public void loadGame(ActionEvent event)
+    {
+        //
+    }
+
+    public void openSettings(ActionEvent event)
+    {
+        //
+    }
+
     public void exitGame(ActionEvent event)
     {
         Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
         stage.close();
+    }
+
+    public void returnToMenu(ActionEvent event)
+    {
+        //
+    }
+
+    public void saveGame(ActionEvent event)
+    {
+        //
+    }
+
+    public void resetGame()
+    {
+        board.reset();
+        updateBoard();
+
+        squaresContainer.setDisable(false);
+        bluePiecesContainer.setDisable(false);
+        orangePiecesContainer.setDisable(false);
+
+        turnLabel.setText("It's Orange's turn!");
+        largeBlueCount.setText("2"); mediumBlueCount.setText("2"); smallBlueCount.setText("2");
+        largeOrangeCount.setText("2"); mediumOrangeCount.setText("2"); smallOrangeCount.setText("2");
     }
 
     public void selectPiece(MouseEvent event)
@@ -101,8 +138,7 @@ public class GobbletGobblersController
 
     public void handleSquareClick(MouseEvent event)
     {
-        var container = (AnchorPane) ((Node) event.getTarget()).getParent().getParent();
-        var squares = container.getChildren();
+        ObservableList<Node> squares = squaresContainer.getChildren();
 
         int row = 0;
         int col = 0;
@@ -128,7 +164,7 @@ public class GobbletGobblersController
             board.changeTurn();
             selectedPiece = null;
 
-            updateBoard(squares);
+            updateBoard();
 
             if(board.checkForWinner())
             {
@@ -137,7 +173,7 @@ public class GobbletGobblersController
             }
 
             String currentPlayer = board.getTurn() == Color.BLUE ? "Blue" : "Orange";
-            turnLabel.setText("It's " + currentPlayer + "'s turn");
+            turnLabel.setText("It's " + currentPlayer + "'s turn!");
         } catch(IllegalStateException e) {
             System.out.println(e.getMessage());
         }
@@ -154,8 +190,10 @@ public class GobbletGobblersController
         count.setText(Integer.toString(--integerCount));
     }
 
-    private void updateBoard(ObservableList<Node> squares)
+    private void updateBoard()
     {
+        ObservableList<Node> squares = squaresContainer.getChildren();
+
         for(int i=0; i<squares.size(); i++)
         {
             int row = i / 3;
@@ -175,6 +213,9 @@ public class GobbletGobblersController
 
     private void endGame()
     {
-        System.out.println("Game over! Winner: " + board.getWinner());
+        turnLabel.setText("Game over! Winner: " + board.getWinner());
+        squaresContainer.setDisable(true);
+        bluePiecesContainer.setDisable(true);
+        orangePiecesContainer.setDisable(true);
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,50 +9,56 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
+   <Button layoutX="140.0" layoutY="25.0" mnemonicParsing="false" onAction="#returnToMenu" prefHeight="43.0" prefWidth="200.0" text="Menu">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Button layoutX="350.0" layoutY="25.0" mnemonicParsing="false" onAction="#saveGame" prefHeight="43.0" prefWidth="200.0" text="Save">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+   <Button layoutX="560.0" layoutY="25.0" mnemonicParsing="false" onAction="#resetGame" prefHeight="43.0" prefWidth="200.0" text="Reset">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
    <Label fx:id="turnLabel" alignment="CENTER" layoutY="90.0" prefHeight="60.0" prefWidth="900.0" text="It's Orange's turn!">
       <font>
          <Font size="40.0" />
       </font>
    </Label>
-   <AnchorPane layoutX="255.0" layoutY="170.0" maxHeight="390.0" maxWidth="390.0" minHeight="390.0" minWidth="390.0" styleClass="board-container">
-      <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 2 2 0; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+   <AnchorPane fx:id="squaresContainer" layoutX="255.0" layoutY="170.0" maxHeight="390.0" maxWidth="390.0" minHeight="390.0" minWidth="390.0" styleClass="board-container">
+      <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 0; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 2 2 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 0 2 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 0 2 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 2 0; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 2 0; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="130.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 0 2 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="260.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 2 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 0 0; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 0; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 0 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="130.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 0 0 2; -fx-border-color: #ea2b23 #afd369;">
-         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
+      <Pane layoutX="260.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 0 2; -fx-border-color: #ea2b23 #afd369;">
+         <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
    </AnchorPane>
-   <AnchorPane layoutX="14.0" layoutY="170.0" maxHeight="390.0" maxWidth="200.0" minHeight="390.0" minWidth="200.0" prefHeight="390.0" prefWidth="200.0" style="-fx-background-color: #a6e3ff;" styleClass="pieces-container">
+   <AnchorPane fx:id="bluePiecesContainer" layoutX="14.0" layoutY="170.0" maxHeight="390.0" maxWidth="200.0" minHeight="390.0" minWidth="200.0" prefHeight="390.0" prefWidth="200.0" style="-fx-background-color: #a6e3ff;" styleClass="pieces-container">
       <ImageView fx:id="largeBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="45.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/large-blue.png" />
       </ImageView>
@@ -77,7 +84,7 @@
          </font>
       </Label>
    </AnchorPane>
-   <AnchorPane layoutX="686.0" layoutY="170.0" maxHeight="390.0" maxWidth="200.0" minHeight="390.0" minWidth="200.0" prefHeight="390.0" prefWidth="200.0" style="-fx-background-color: #FFB985FF;" styleClass="pieces-container">
+   <AnchorPane fx:id="orangePiecesContainer" layoutX="686.0" layoutY="170.0" maxHeight="390.0" maxWidth="200.0" minHeight="390.0" minWidth="200.0" prefHeight="390.0" prefWidth="200.0" style="-fx-background-color: #FFB985FF;" styleClass="pieces-container">
       <ImageView fx:id="largeOrangeImage" fitHeight="100.0" fitWidth="100.0" layoutY="45.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/large-orange.png" />
       </ImageView>

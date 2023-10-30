@@ -90,33 +90,33 @@ public class Board
     public boolean checkForWinner()
     {
         // check all rows
-        try {
-            for(int row=0; row<3; row++)
-            {
+        for(int row=0; row<3; row++)
+        {
+            try {
                 if(board[row][0].peek().getColor() == board[row][1].peek().getColor() &&
                     board[row][1].peek().getColor() == board[row][2].peek().getColor())
                 {
                     winner = board[row][0].peek().getColor();
                     return true;
                 }
+            } catch (EmptyStackException e) {
+                // continue checking
             }
-        } catch(EmptyStackException e) {
-            // continue checking
         }
 
         // check all columns
-        try {
-            for(int col=0; col<3; col++)
-            {
+        for(int col=0; col<3; col++)
+        {
+            try {
                 if(board[0][col].peek().getColor() == board[1][col].peek().getColor() &&
                     board[1][col].peek().getColor() == board[2][col].peek().getColor())
                 {
                     winner = board[0][col].peek().getColor();
                     return true;
                 }
+            } catch (EmptyStackException e) {
+                // continue checking
             }
-        } catch(EmptyStackException e) {
-            // continue checking
         }
 
         // check main diagonal
