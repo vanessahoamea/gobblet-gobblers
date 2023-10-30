@@ -4,6 +4,7 @@ import com.game.gobbletgobblers.board.Board;
 import com.game.gobbletgobblers.board.Color;
 import com.game.gobbletgobblers.board.Piece;
 import com.game.gobbletgobblers.board.Size;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -79,9 +81,8 @@ public class GobbletGobblersController
         if(selectedPiece != null)
             return;
 
-        if(target.getId().contains("Blue") && board.getTurn() == Color.ORANGE)
-            return;
-        if(target.getId().contains("Orange") && board.getTurn() == Color.BLUE)
+        if((target.getId().contains("Blue") && board.getTurn() == Color.ORANGE) ||
+            (target.getId().contains("Orange") && board.getTurn() == Color.BLUE))
             return;
 
         if(target.equals(smallBlueImage))
@@ -100,20 +101,19 @@ public class GobbletGobblersController
 
     public void handleSquareClick(MouseEvent event)
     {
-        Pane target = (Pane) ((Node) event.getTarget()).getParent();
-        String[] classNames = target.getStyleClass().get(0).split(" ");
+        var container = (AnchorPane) ((Node) event.getTarget()).getParent().getParent();
+        var squares = container.getChildren();
 
         int row = 0;
-        if(classNames[0].equals("second-row"))
-            row = 1;
-        if(classNames[0].equals("third-row"))
-            row = 2;
-
         int col = 0;
-        if(classNames[1].equals("second-col"))
-            col = 1;
-        if(classNames[1].equals("third-col"))
-            col = 2;
+        for(int i=0; i<squares.size(); i++)
+        {
+            if(squares.get(i).equals(((Node) event.getTarget()).getParent()))
+            {
+                row = i / 3;
+                col = i % 3;
+            }
+        }
 
         // user selects an existing piece to move
         if(selectedPiece == null)
@@ -126,10 +126,9 @@ public class GobbletGobblersController
         try {
             board.placePiece(row, col, selectedPiece);
             board.changeTurn();
-
-            target.getChildren().removeAll();
-            target.getChildren().add(selectedPiece.getImage());
             selectedPiece = null;
+
+            updateBoard(squares);
 
             if(board.checkForWinner())
             {
@@ -153,6 +152,25 @@ public class GobbletGobblersController
 
         selectedPiece = array[index];
         count.setText(Integer.toString(--integerCount));
+    }
+
+    private void updateBoard(ObservableList<Node> squares)
+    {
+        for(int i=0; i<squares.size(); i++)
+        {
+            int row = i / 3;
+            int col = i % 3;
+
+            Pane square = (Pane) squares.get(i);
+            ImageView imageView = (ImageView) square.getChildren().get(0);
+            imageView.setImage(null);
+
+            if(board.getBoard()[row][col].isEmpty())
+                continue;
+
+            Piece topPiece = board.getBoard()[row][col].peek();
+            square.getChildren().set(0, topPiece.getImage());
+        }
     }
 
     private void endGame()

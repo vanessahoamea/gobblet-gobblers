@@ -12,11 +12,9 @@ g
 7src/main/java/com/game/gobbletgobblers/board/Color.java,2\a\2ad5a3e33974fc63c761c823ff1794d7adcaed8c
 v
 Fsrc/main/java/com/game/gobbletgobblers/GobbletGobblersApplication.java,f\0\f02ead4d1049b330079e4aafb58a3b05046108b4
-g
-7src/main/java/com/game/gobbletgobblers/board/Piece.java,d\7\d71184696a223cb98d44211c4f7813de42ca8252
 l
 <src/main/java/com/game/gobbletgobblers/util/ImageLoader.java,c\8\c8d4ceae07a53ebea244b780fbe6b46c265ad26f
 g
+7src/main/java/com/game/gobbletgobblers/board/Piece.java,d\7\d71184696a223cb98d44211c4f7813de42ca8252
+g
 7src/main/java/com/game/gobbletgobblers/board/Board.java,d\9\d9e7d9c66570620fdef864090429b63c2629bd8e
-u
-Esrc/main/java/com/game/gobbletgobblers/GobbletGobblersController.java,3\1\31d80e39c48ee579bd8afedea5b71538c82d208e

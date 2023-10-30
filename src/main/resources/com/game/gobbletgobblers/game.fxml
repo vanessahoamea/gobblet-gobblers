@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
    <Label fx:id="turnLabel" alignment="CENTER" layoutY="90.0" prefHeight="60.0" prefWidth="900.0" text="It's Orange's turn!">
       <font>
          <Font size="40.0" />
@@ -15,39 +15,39 @@
    </Label>
    <AnchorPane layoutX="255.0" layoutY="170.0" maxHeight="390.0" maxWidth="390.0" minHeight="390.0" minWidth="390.0" styleClass="board-container">
       <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 2 2 0; -fx-border-color: #ea2b23 #afd369;" styleClass="first-row first-col">
+            style="-fx-border-width: 0 2 2 0; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 2 2 2; -fx-border-color: #ea2b23 #afd369;" styleClass="first-row second-col">
+            style="-fx-border-width: 0 2 2 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 0 0 2 2; -fx-border-color: #ea2b23 #afd369;" styleClass="first-row third-col">
+            style="-fx-border-width: 0 0 2 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 2 0; -fx-border-color: #ea2b23 #afd369;" styleClass="second-row first-col">
+            style="-fx-border-width: 2 2 2 0; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="130.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2; -fx-border-color: #ea2b23 #afd369;" styleClass="second-row second-col">
+            style="-fx-border-width: 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="260.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 0 2 2; -fx-border-color: #ea2b23 #afd369;" styleClass="second-row third-col">
+            style="-fx-border-width: 2 0 2 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 0 0; -fx-border-color: #ea2b23 #afd369;" styleClass="third-row first-col">
+            style="-fx-border-width: 2 2 0 0; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="130.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 2 0 2; -fx-border-color: #ea2b23 #afd369;" styleClass="third-row second-col">
+            style="-fx-border-width: 2 2 0 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
       <Pane layoutX="260.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0"
-            style="-fx-border-width: 2 0 0 2; -fx-border-color: #ea2b23 #afd369;" styleClass="third-row third-col">
+            style="-fx-border-width: 2 0 0 2; -fx-border-color: #ea2b23 #afd369;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"/>
       </Pane>
    </AnchorPane>

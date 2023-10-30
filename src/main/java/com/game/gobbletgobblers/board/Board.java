@@ -17,6 +17,11 @@ public class Board
         reset();
     }
 
+    public Stack<Piece>[][] getBoard()
+    {
+        return board;
+    }
+
     public Color getTurn()
     {
         return turn;
@@ -55,7 +60,6 @@ public class Board
             if(piece.getSize().ordinal() > lastPlaced.getSize().ordinal())
             {
                 board[row][col].push(piece);
-                freeSquares--;
 
                 isMoving = false;
                 movingFrom[0] = -1; movingFrom[1] = -1;
@@ -71,11 +75,11 @@ public class Board
 
     public Piece movePiece(int row, int col)
     {
-        if(board[row][col].isEmpty())
+        if(board[row][col].isEmpty() || board[row][col].peek().getColor() != turn)
             return null;
 
-        if(board[row][col].peek().getColor() != turn)
-            return null;
+        if(board[row][col].size() == 1)
+            freeSquares++;
 
         isMoving = true;
         movingFrom[0] = row; movingFrom[1] = col;
@@ -115,14 +119,22 @@ public class Board
             // continue checking
         }
 
-        // check diagonals
+        // check main diagonal
         try {
-            if(
-                (board[0][0].peek().getColor() == board[1][1].peek().getColor() &&
-                    board[1][1].peek().getColor() == board[2][2].peek().getColor()) ||
-                (board[0][2].peek().getColor() == board[1][1].peek().getColor() &&
-                    board[1][1].peek().getColor() == board[2][0].peek().getColor())
-            )
+            if(board[0][0].peek().getColor() == board[1][1].peek().getColor() &&
+                board[1][1].peek().getColor() == board[2][2].peek().getColor())
+            {
+                winner = board[1][1].peek().getColor();
+                return true;
+            }
+        } catch(EmptyStackException e) {
+            // continue checking
+        }
+
+        // check antidiagonal
+        try {
+            if(board[0][2].peek().getColor() == board[1][1].peek().getColor() &&
+                board[1][1].peek().getColor() == board[2][0].peek().getColor())
             {
                 winner = board[1][1].peek().getColor();
                 return true;
