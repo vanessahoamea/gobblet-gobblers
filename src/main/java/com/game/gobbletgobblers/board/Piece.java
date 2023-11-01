@@ -4,15 +4,19 @@ import com.game.gobbletgobblers.util.ImageLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Piece
+import java.io.Serializable;
+
+public class Piece implements Serializable
 {
     private final Size size;
     private final Color color;
+    private int count;
 
     public Piece(Size size, Color color)
     {
         this.size = size;
         this.color = color;
+        this.count = 2;
     }
 
     public Size getSize()
@@ -23,6 +27,16 @@ public class Piece
     public Color getColor()
     {
         return color;
+    }
+
+    public int getCount()
+    {
+        return count;
+    }
+
+    public void setCount(int count)
+    {
+        this.count = count;
     }
 
     public ImageView getImage()

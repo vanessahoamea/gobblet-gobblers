@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GobbletGobblersController
 {
@@ -38,13 +39,15 @@ public class GobbletGobblersController
     @FXML private ImageView smallOrangeImage;
     @FXML private Label smallOrangeCount;
 
-    private final Board board;
+    private GobbletGobblersController controller;
+    private Board board;
     private Piece selectedPiece;
     private final Piece[] bluePieces;
     private final Piece[] orangePieces;
 
     public GobbletGobblersController()
     {
+        controller = this;
         board = new Board();
         selectedPiece = null;
 
@@ -59,8 +62,6 @@ public class GobbletGobblersController
 
     public void startNewGame(ActionEvent event) throws IOException
     {
-        board.reset();
-
         Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game.fxml"));
@@ -69,11 +70,21 @@ public class GobbletGobblersController
 
         stage.setScene(scene);
         stage.show();
+
+        controller = fxmlLoader.getController();
+        controller.board.reset();
     }
 
     public void loadGame(ActionEvent event)
     {
-        //
+        try {
+            startNewGame(event);
+            controller.board = controller.board.deserialize();
+            updateBoard();
+            updateLabels();
+        } catch(IOException | ClassNotFoundException e) {
+            // TODO: show a proper error message to the user
+        }
     }
 
     public void openSettings(ActionEvent event)
@@ -92,53 +103,59 @@ public class GobbletGobblersController
         //
     }
 
-    public void saveGame(ActionEvent event)
+    public void saveGame()
     {
-        //
+        try {
+            controller.board.serialize();
+        } catch(IOException e) {
+            // TODO: show proper error message to user
+        }
     }
 
     public void resetGame()
     {
-        board.reset();
+        controller.board.reset();
         updateBoard();
+        updateLabels();
 
-        squaresContainer.setDisable(false);
-        bluePiecesContainer.setDisable(false);
-        orangePiecesContainer.setDisable(false);
+        for(Piece bluePiece : controller.bluePieces)
+            bluePiece.setCount(2);
+        for(Piece orangePiece : controller.orangePieces)
+            orangePiece.setCount(2);
 
-        turnLabel.setText("It's Orange's turn!");
-        largeBlueCount.setText("2"); mediumBlueCount.setText("2"); smallBlueCount.setText("2");
-        largeOrangeCount.setText("2"); mediumOrangeCount.setText("2"); smallOrangeCount.setText("2");
+        controller.squaresContainer.setDisable(false);
+        controller.bluePiecesContainer.setDisable(false);
+        controller.orangePiecesContainer.setDisable(false);
     }
 
     public void selectPiece(MouseEvent event)
     {
         Node target = (Node) event.getTarget();
 
-        if(selectedPiece != null)
+        if(controller.selectedPiece != null)
             return;
 
-        if((target.getId().contains("Blue") && board.getTurn() == Color.ORANGE) ||
-            (target.getId().contains("Orange") && board.getTurn() == Color.BLUE))
+        if((target.getId().contains("Blue") && controller.board.getTurn() == Color.ORANGE) ||
+            (target.getId().contains("Orange") && controller.board.getTurn() == Color.BLUE))
             return;
 
-        if(target.equals(smallBlueImage))
-            selectPiece(bluePieces, 0, smallBlueCount);
-        else if(target.equals(mediumBlueImage))
-            selectPiece(bluePieces, 1, mediumBlueCount);
-        else if(target.equals(largeBlueImage))
-            selectPiece(bluePieces, 2, largeBlueCount);
-        else if(target.equals(smallOrangeImage))
-            selectPiece(orangePieces, 0, smallOrangeCount);
-        else if(target.equals(mediumOrangeImage))
-            selectPiece(orangePieces, 1, mediumOrangeCount);
-        else if(target.equals(largeOrangeImage))
-            selectPiece(orangePieces, 2, largeOrangeCount);
+        if(target.equals(controller.smallBlueImage))
+            selectPiece(controller.bluePieces, 0, controller.smallBlueCount);
+        else if(target.equals(controller.mediumBlueImage))
+            selectPiece(controller.bluePieces, 1, controller.mediumBlueCount);
+        else if(target.equals(controller.largeBlueImage))
+            selectPiece(controller.bluePieces, 2, controller.largeBlueCount);
+        else if(target.equals(controller.smallOrangeImage))
+            selectPiece(controller.orangePieces, 0, controller.smallOrangeCount);
+        else if(target.equals(controller.mediumOrangeImage))
+            selectPiece(controller.orangePieces, 1, controller.mediumOrangeCount);
+        else if(target.equals(controller.largeOrangeImage))
+            selectPiece(controller.orangePieces, 2, controller.largeOrangeCount);
     }
 
     public void handleSquareClick(MouseEvent event)
     {
-        ObservableList<Node> squares = squaresContainer.getChildren();
+        ObservableList<Node> squares = controller.squaresContainer.getChildren();
 
         int row = 0;
         int col = 0;
@@ -152,47 +169,46 @@ public class GobbletGobblersController
         }
 
         // user selects an existing piece to move
-        if(selectedPiece == null)
+        if(controller.selectedPiece == null)
         {
-            selectedPiece = board.movePiece(row, col);
+            controller.selectedPiece = controller.board.movePiece(row, col);
             return;
         }
 
         // user places a newly selected piece
         try {
-            board.placePiece(row, col, selectedPiece);
-            board.changeTurn();
-            selectedPiece = null;
+            controller.board.placePiece(row, col, controller.selectedPiece);
+            controller.board.changeTurn();
+            controller.selectedPiece = null;
 
             updateBoard();
 
-            if(board.checkForWinner())
+            if(controller.board.checkForWinner())
             {
                 endGame();
                 return;
             }
 
-            String currentPlayer = board.getTurn() == Color.BLUE ? "Blue" : "Orange";
-            turnLabel.setText("It's " + currentPlayer + "'s turn!");
+            String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
+            controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
         } catch(IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private void selectPiece(Piece[] array, int index, Label count)
+    private void selectPiece(Piece[] array, int index, Label countLabel)
     {
-        int integerCount = Integer.parseInt(count.getText());
-
-        if(integerCount == 0)
+        if(array[index].getCount() == 0)
             return;
 
-        selectedPiece = array[index];
-        count.setText(Integer.toString(--integerCount));
+        controller.selectedPiece = array[index];
+        controller.selectedPiece.setCount(controller.selectedPiece.getCount() - 1);
+        countLabel.setText(Integer.toString(controller.selectedPiece.getCount()));
     }
 
     private void updateBoard()
     {
-        ObservableList<Node> squares = squaresContainer.getChildren();
+        ObservableList<Node> squares = controller.squaresContainer.getChildren();
 
         for(int i=0; i<squares.size(); i++)
         {
@@ -203,19 +219,63 @@ public class GobbletGobblersController
             ImageView imageView = (ImageView) square.getChildren().get(0);
             imageView.setImage(null);
 
-            if(board.getBoard()[row][col].isEmpty())
+            if(controller.board.getBoard()[row][col].isEmpty())
                 continue;
 
-            Piece topPiece = board.getBoard()[row][col].peek();
+            Piece topPiece = controller.board.getBoard()[row][col].peek();
             square.getChildren().set(0, topPiece.getImage());
         }
     }
 
+    private void updateLabels()
+    {
+        Label[][] countLabels = new Label[][]{
+            { controller.smallBlueCount, controller.mediumBlueCount, controller.largeBlueCount },
+            { controller.smallOrangeCount, controller.mediumOrangeCount, controller.largeOrangeCount }
+        };
+
+        for(Label[] row : countLabels)
+        {
+            for(Label countLabel : row)
+            {
+                countLabel.setText("2");
+            }
+        }
+
+        for(int i=0; i<3; i++)
+        {
+            for(int j=0; j<3; j++)
+            {
+                if(controller.board.getBoard()[i][j].isEmpty())
+                    continue;
+
+                for(Piece piece : new ArrayList<>(controller.board.getBoard()[i][j]))
+                {
+                    int colorIndex = piece.getColor().ordinal();
+                    int sizeIndex = piece.getSize().ordinal();
+                    countLabels[colorIndex][sizeIndex].setText(Integer.toString(piece.getCount()));
+
+                    if(colorIndex == 0)
+                        controller.bluePieces[sizeIndex].setCount(
+                            controller.bluePieces[sizeIndex].getCount() - 1
+                        );
+                    else
+                        controller.orangePieces[sizeIndex].setCount(
+                            controller.orangePieces[sizeIndex].getCount() - 1
+                        );
+                }
+            }
+        }
+
+        String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
+        controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
+    }
+
     private void endGame()
     {
-        turnLabel.setText("Game over! Winner: " + board.getWinner());
-        squaresContainer.setDisable(true);
-        bluePiecesContainer.setDisable(true);
-        orangePiecesContainer.setDisable(true);
+        controller.turnLabel.setText("Game over! Winner: " + controller.board.getWinner());
+        controller.squaresContainer.setDisable(true);
+        controller.bluePiecesContainer.setDisable(true);
+        controller.orangePiecesContainer.setDisable(true);
     }
 }

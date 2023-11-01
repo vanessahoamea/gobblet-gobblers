@@ -6,22 +6,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
    <AnchorPane layoutX="150.0" layoutY="150.0" prefHeight="300.0" prefWidth="600.0">
-      <Button layoutX="200.0" layoutY="35.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#startNewGame" text="New Game">
+      <Button layoutX="200.0" layoutY="35.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#startNewGame" text="New Game" styleClass="menu-button">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="200.0" layoutY="215.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#exitGame" text="Exit">
+      <Button layoutX="200.0" layoutY="95.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#loadGame" text="Load Game" styleClass="menu-button">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="200.0" layoutY="95.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#loadGame" text="Load Game">
+      <Button layoutX="200.0" layoutY="155.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#openSettings" text="Settings" styleClass="menu-button">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="200.0" layoutY="155.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#openSettings" text="Settings">
+      <Button layoutX="200.0" layoutY="215.0" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" mnemonicParsing="false" onAction="#exitGame" text="Exit" styleClass="menu-button">
          <font>
             <Font size="20.0" />
          </font>

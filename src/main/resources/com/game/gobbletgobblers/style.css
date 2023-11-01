@@ -7,7 +7,9 @@
 }
 
 .menu-button {
-    /* */
+    -fx-background-color: #ff8c34;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
 }
 
 .board-container {

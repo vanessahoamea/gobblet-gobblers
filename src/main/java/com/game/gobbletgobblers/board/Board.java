@@ -1,9 +1,10 @@
 package com.game.gobbletgobblers.board;
 
+import java.io.*;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class Board
+public class Board implements Serializable
 {
     private Stack<Piece>[][] board;
     private Color turn;
@@ -162,5 +163,34 @@ public class Board
         freeSquares = 9;
         isMoving = false;
         movingFrom = new int[]{ -1 , -1 };
+    }
+
+    public void serialize() throws IOException
+    {
+        // creating file if it doesn't exist
+        File saveFile = new File("data/save.txt");
+        saveFile.createNewFile();
+
+        FileOutputStream outFile = new FileOutputStream("data/save.txt");
+        ObjectOutputStream out = new ObjectOutputStream(outFile);
+
+        out.writeObject(this);
+        out.flush();
+
+        outFile.close();
+        out.close();
+    }
+
+    public Board deserialize() throws IOException, ClassNotFoundException
+    {
+        FileInputStream inFile = new FileInputStream("data/save.txt");
+        ObjectInputStream in = new ObjectInputStream(inFile);
+
+        Board loadedBoard = (Board) in.readObject();
+
+        inFile.close();
+        in.close();
+
+        return loadedBoard;
     }
 }
