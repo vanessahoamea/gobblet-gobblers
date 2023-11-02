@@ -4,6 +4,7 @@ import com.game.gobbletgobblers.board.Board;
 import com.game.gobbletgobblers.board.Color;
 import com.game.gobbletgobblers.board.Piece;
 import com.game.gobbletgobblers.board.Size;
+import com.game.gobbletgobblers.util.PieceProxy;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -139,6 +140,7 @@ public class GobbletGobblersController
             (target.getId().contains("Orange") && controller.board.getTurn() == Color.BLUE))
             return;
 
+        PieceProxy.setStartPosition(event.getSceneX(), event.getSceneY());
         if(target.equals(controller.smallBlueImage))
             selectPiece(controller.bluePieces, 0, controller.smallBlueCount);
         else if(target.equals(controller.mediumBlueImage))
@@ -172,6 +174,11 @@ public class GobbletGobblersController
         if(controller.selectedPiece == null)
         {
             controller.selectedPiece = controller.board.movePiece(row, col);
+            if(controller.selectedPiece != null)
+            {
+                PieceProxy.setStartPosition(event.getSceneX(), event.getSceneY());
+                PieceProxy.createProxy(controller.selectedPiece.getImage(), controller.squaresContainer);
+            }
             return;
         }
 
@@ -191,6 +198,8 @@ public class GobbletGobblersController
 
             String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
             controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
+
+            PieceProxy.hideProxy(controller.squaresContainer);
         } catch(IllegalStateException e) {
             System.out.println(e.getMessage());
         }
@@ -204,6 +213,8 @@ public class GobbletGobblersController
         controller.selectedPiece = array[index];
         controller.selectedPiece.setCount(controller.selectedPiece.getCount() - 1);
         countLabel.setText(Integer.toString(controller.selectedPiece.getCount()));
+
+        PieceProxy.createProxy(controller.selectedPiece.getImage(), controller.squaresContainer);
     }
 
     private void updateBoard()
