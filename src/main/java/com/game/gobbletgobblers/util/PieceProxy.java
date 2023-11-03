@@ -22,8 +22,8 @@ public class PieceProxy
     {
         PieceProxy.imageView = new ImageView(view.getImage());
 
-        PieceProxy.imageView.setLayoutX(startX);
-        PieceProxy.imageView.setLayoutY(startY);
+        PieceProxy.imageView.setLayoutX(startX - 10);
+        PieceProxy.imageView.setLayoutY(startY - 10);
         PieceProxy.imageView.setFitHeight(100.0);
         PieceProxy.imageView.setFitWidth(100.0);
         PieceProxy.imageView.setOpacity(0.5);
@@ -38,9 +38,9 @@ public class PieceProxy
         pane.getScene().removeEventHandler(MouseEvent.MOUSE_MOVED, PieceProxy::updatePosition);
     }
 
-    public static void updatePosition(MouseEvent event)
+    private static void updatePosition(MouseEvent event)
     {
-        imageView.setLayoutX(event.getX());
-        imageView.setLayoutY(event.getY());
+        imageView.setLayoutX(event.getX() - 10);
+        imageView.setLayoutY(event.getY() - 10);
     }
 }

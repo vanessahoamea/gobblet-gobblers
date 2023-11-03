@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
+    <Label layoutX="185.0" layoutY="263.0" text="This is the settings page">
+        <font>
+          <Font size="50.0" />
+        </font>
+    </Label>
+   <Button layoutX="416.0" layoutY="25.0" mnemonicParsing="false" onAction="#returnToMenu" text="Back">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </Button>
+</AnchorPane>

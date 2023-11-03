@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GobbletGobblersController
 {
@@ -61,19 +62,13 @@ public class GobbletGobblersController
             orangePieces[i] = new Piece(Size.values()[i], Color.ORANGE);
     }
 
-    public void startNewGame(ActionEvent event) throws IOException
+    public void startNewGame(ActionEvent event)
     {
-        Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("game.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
-        stage.setScene(scene);
-        stage.show();
-
-        controller = fxmlLoader.getController();
-        controller.board.reset();
+        try {
+            switchScene(event, "game.fxml");
+        } catch(IOException e) {
+            // TODO: show a proper error message to the user
+        }
     }
 
     public void loadGame(ActionEvent event)
@@ -90,7 +85,11 @@ public class GobbletGobblersController
 
     public void openSettings(ActionEvent event)
     {
-        //
+        try {
+            switchScene(event, "settings.fxml");
+        } catch(IOException e) {
+            // TODO: show a proper error message to the user
+        }
     }
 
     public void exitGame(ActionEvent event)
@@ -101,7 +100,11 @@ public class GobbletGobblersController
 
     public void returnToMenu(ActionEvent event)
     {
-        //
+        try {
+            switchScene(event, "start.fxml");
+        } catch(IOException e) {
+            // TODO: show a proper error message to the user
+        }
     }
 
     public void saveGame()
@@ -189,6 +192,7 @@ public class GobbletGobblersController
             controller.selectedPiece = null;
 
             updateBoard();
+            PieceProxy.hideProxy(controller.squaresContainer);
 
             if(controller.board.checkForWinner())
             {
@@ -198,11 +202,27 @@ public class GobbletGobblersController
 
             String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
             controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
-
-            PieceProxy.hideProxy(controller.squaresContainer);
         } catch(IllegalStateException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void switchScene(ActionEvent event, String filename) throws IOException
+    {
+
+        Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(
+            Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm()
+        );
+
+        stage.setScene(scene);
+        stage.show();
+
+        controller = fxmlLoader.getController();
+        controller.board.reset();
     }
 
     private void selectPiece(Piece[] array, int index, Label countLabel)
@@ -245,13 +265,8 @@ public class GobbletGobblersController
             { controller.smallOrangeCount, controller.mediumOrangeCount, controller.largeOrangeCount }
         };
 
-        for(Label[] row : countLabels)
-        {
-            for(Label countLabel : row)
-            {
-                countLabel.setText("2");
-            }
-        }
+        controller.smallBlueCount.setText("2"); controller.mediumBlueCount.setText("2"); controller.largeBlueCount.setText("2");
+        controller.smallOrangeCount.setText("2"); controller.mediumOrangeCount.setText("2"); controller.largeOrangeCount.setText("2");
 
         for(int i=0; i<3; i++)
         {
