@@ -30,31 +30,31 @@
       </font>
    </Label>
    <AnchorPane fx:id="squaresContainer" layoutX="255.0" layoutY="170.0" maxHeight="390.0" maxWidth="390.0" minHeight="390.0" minWidth="390.0" styleClass="board-container">
-      <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 0; -fx-border-color: #ea2b23 #afd369;">
+      <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 0; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 0 2 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 0 2 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 2 0; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 2 0; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="130.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 2 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="260.0" layoutY="130.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 2 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 0; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 0; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="130.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="130.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 2 0 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
-      <Pane layoutX="260.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 0 2; -fx-border-color: #ea2b23 #afd369;">
+      <Pane layoutX="260.0" layoutY="260.0" onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 2 0 0 2; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
       </Pane>
    </AnchorPane>
@@ -62,7 +62,7 @@
       <ImageView fx:id="largeBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="45.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/large-blue.png" />
       </ImageView>
-      <Label fx:id="largeBlueCount" alignment="CENTER" layoutX="100.0" layoutY="45.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#71cafe">
+      <Label fx:id="largeBlueCount" alignment="CENTER" layoutX="100.0" layoutY="50.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -70,7 +70,7 @@
       <ImageView fx:id="mediumBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="145.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/medium-blue.png" />
       </ImageView>
-      <Label fx:id="mediumBlueCount" alignment="CENTER" layoutX="100.0" layoutY="145.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#71cafe">
+      <Label fx:id="mediumBlueCount" alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -78,7 +78,7 @@
       <ImageView fx:id="smallBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="245.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/small-blue.png" />
       </ImageView>
-      <Label fx:id="smallBlueCount" alignment="CENTER" layoutX="100.0" layoutY="245.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#71cafe">
+      <Label fx:id="smallBlueCount" alignment="CENTER" layoutX="100.0" layoutY="250.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -88,7 +88,7 @@
       <ImageView fx:id="largeOrangeImage" fitHeight="100.0" fitWidth="100.0" layoutY="45.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/large-orange.png" />
       </ImageView>
-      <Label fx:id="largeOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="45.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#ff8c34">
+      <Label fx:id="largeOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="50.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #ff8c34;" text="2" textFill="#ffb985">
          <font>
             <Font size="50.0" />
          </font>
@@ -96,7 +96,7 @@
       <ImageView fx:id="mediumOrangeImage" fitHeight="100.0" fitWidth="100.0" layoutY="145.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/medium-orange.png" />
       </ImageView>
-      <Label fx:id="mediumOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="145.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#ff8c34">
+      <Label fx:id="mediumOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #ff8c34;" text="2" textFill="#ffb985">
          <font>
             <Font size="50.0" />
          </font>
@@ -104,7 +104,7 @@
       <ImageView fx:id="smallOrangeImage" fitHeight="100.0" fitWidth="100.0" layoutY="245.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/small-orange.png" />
       </ImageView>
-      <Label fx:id="smallOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="245.0" prefHeight="100.0" prefWidth="100.0" text="2" textFill="#ff8c34">
+      <Label fx:id="smallOrangeCount" alignment="CENTER" layoutX="100.0" layoutY="250.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #ff8c34;" text="2" textFill="#ffb985">
          <font>
             <Font size="50.0" />
          </font>

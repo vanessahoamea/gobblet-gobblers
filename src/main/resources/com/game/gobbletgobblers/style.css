@@ -6,21 +6,27 @@
     -fx-focus-color: transparent;
 }
 
-.menu-button {
-    -fx-background-color: #ff8c34;
+.button {
+    -fx-background-color: #70c045;
     -fx-text-fill: white;
     -fx-background-radius: 10;
 }
 
+.button:hover {
+    -fx-background-color: #52a126;
+}
+
 .board-container {
-    -fx-background-color: #ba6433;
-    -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, black, 20, 0, 0, 0);
 }
 
 .pieces-container {
     -fx-background-radius: 20;
     -fx-effect: dropshadow(three-pass-box, black, 20, 0, 0, 0);
+}
+
+.pieces-container .label {
+    -fx-background-radius: 20;
 }
 
 .blue {

@@ -48,11 +48,11 @@ public class Popup
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Game over");
 
-        switch(winner)
-        {
-            case BLUE -> alert.setContentText("Blue is the winner! Congratulations!");
-            case ORANGE -> alert.setContentText("Orange is the winner! Congratulations!");
-            default -> alert.setContentText("The game ended in a draw! Better luck next time!");
-        }
+        if(winner == Color.BLUE)
+            alert.setContentText("Blue is the winner! Congratulations!");
+        else if(winner == Color.ORANGE)
+            alert.setContentText("Orange is the winner! Congratulations!");
+        else
+            alert.setContentText("The game ended in a draw! Better luck next time!");
     }
 }
