@@ -5,12 +5,14 @@ import com.game.gobbletgobblers.board.Color;
 import com.game.gobbletgobblers.board.Piece;
 import com.game.gobbletgobblers.board.Size;
 import com.game.gobbletgobblers.util.PieceProxy;
+import com.game.gobbletgobblers.util.Popup;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +46,7 @@ public class GobbletGobblersController
     private GobbletGobblersController controller;
     private Board board;
     private Piece selectedPiece;
+    private boolean savedProgress;
     private final Piece[] bluePieces;
     private final Piece[] orangePieces;
 
@@ -52,6 +55,7 @@ public class GobbletGobblersController
         controller = this;
         board = new Board();
         selectedPiece = null;
+        savedProgress = true;
 
         bluePieces = new Piece[3];
         for(int i=0; i<3; i++)
@@ -60,6 +64,11 @@ public class GobbletGobblersController
         orangePieces = new Piece[3];
         for(int i=0; i<3; i++)
             orangePieces[i] = new Piece(Size.values()[i], Color.ORANGE);
+    }
+
+    public boolean getSavedProgress()
+    {
+        return controller.savedProgress;
     }
 
     public void startNewGame(ActionEvent event)
@@ -100,10 +109,21 @@ public class GobbletGobblersController
 
     public void returnToMenu(ActionEvent event)
     {
-        try {
-            switchScene(event, "start.fxml");
-        } catch(IOException e) {
-            // TODO: show a proper error message to the user
+        if(!controller.savedProgress)
+        {
+            Popup.returnToMenu();
+            Popup.getAlert()
+                .showAndWait()
+                .ifPresent(response -> controller.savedProgress = (response == ButtonType.OK));
+        }
+
+        if(controller.savedProgress)
+        {
+            try {
+                switchScene(event, "start.fxml");
+            } catch(IOException e) {
+                // TODO: show a proper error message to the user
+            }
         }
     }
 
@@ -111,6 +131,7 @@ public class GobbletGobblersController
     {
         try {
             controller.board.serialize();
+            controller.savedProgress = true;
         } catch(IOException e) {
             // TODO: show proper error message to user
         }
@@ -118,18 +139,29 @@ public class GobbletGobblersController
 
     public void resetGame()
     {
-        controller.board.reset();
-        updateBoard();
-        updateLabels();
+        if(!savedProgress)
+        {
+            Popup.reset();
+            Popup.getAlert()
+                .showAndWait()
+                .ifPresent(response -> controller.savedProgress = (response == ButtonType.OK));
+        }
 
-        for(Piece bluePiece : controller.bluePieces)
-            bluePiece.setCount(2);
-        for(Piece orangePiece : controller.orangePieces)
-            orangePiece.setCount(2);
+        if(savedProgress)
+        {
+            controller.board.reset();
+            updateBoard();
+            updateLabels();
 
-        controller.squaresContainer.setDisable(false);
-        controller.bluePiecesContainer.setDisable(false);
-        controller.orangePiecesContainer.setDisable(false);
+            for(Piece bluePiece : controller.bluePieces)
+                bluePiece.setCount(2);
+            for(Piece orangePiece : controller.orangePieces)
+                orangePiece.setCount(2);
+
+            controller.squaresContainer.setDisable(false);
+            controller.bluePiecesContainer.setDisable(false);
+            controller.orangePiecesContainer.setDisable(false);
+        }
     }
 
     public void selectPiece(MouseEvent event)
@@ -190,6 +222,7 @@ public class GobbletGobblersController
             controller.board.placePiece(row, col, controller.selectedPiece);
             controller.board.changeTurn();
             controller.selectedPiece = null;
+            controller.savedProgress = false;
 
             updateBoard();
             PieceProxy.hideProxy(controller.squaresContainer);
@@ -209,7 +242,6 @@ public class GobbletGobblersController
 
     private void switchScene(ActionEvent event, String filename) throws IOException
     {
-
         Stage stage = (Stage) (((Node) (event.getSource())).getScene().getWindow());
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(filename));
@@ -299,9 +331,13 @@ public class GobbletGobblersController
 
     private void endGame()
     {
-        controller.turnLabel.setText("Game over! Winner: " + controller.board.getWinner());
+        controller.turnLabel.setText("Game over!");
         controller.squaresContainer.setDisable(true);
         controller.bluePiecesContainer.setDisable(true);
         controller.orangePiecesContainer.setDisable(true);
+        controller.savedProgress = true;
+
+        Popup.gameOver(controller.board.getWinner());
+        Popup.getAlert().show();
     }
 }
