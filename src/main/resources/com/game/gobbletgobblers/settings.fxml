@@ -2,18 +2,57 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.game.gobbletgobblers.GobbletGobblersController">
-    <Label layoutX="185.0" layoutY="263.0" text="This is the settings page">
-        <font>
-          <Font size="50.0" />
-        </font>
-    </Label>
-   <Button layoutX="416.0" layoutY="25.0" mnemonicParsing="false" onAction="#returnToMenu" text="Back">
+   <Button layoutX="423.0" layoutY="25.0" mnemonicParsing="false" onAction="#returnToMenu" text="Return">
       <font>
          <Font size="20.0" />
       </font>
    </Button>
+   <Label layoutX="302.0" layoutY="127.0" text="Background Music">
+      <font>
+         <Font size="40.0" />
+      </font>
+   </Label>
+   <RadioButton fx:id="musicOnButton" layoutX="360.0" layoutY="187.0" mnemonicParsing="false" onAction="#toggleMusic" selected="true" text="On" styleClass="music-radio-button">
+      <font>
+         <Font size="20.0" />
+      </font>
+      <toggleGroup>
+         <ToggleGroup fx:id="music" />
+      </toggleGroup>
+   </RadioButton>
+   <RadioButton fx:id="musicOffButton" layoutX="490.0" layoutY="187.0" mnemonicParsing="false" onAction="#toggleMusic" text="Off" toggleGroup="$music" styleClass="music-radio-button">
+      <font>
+         <Font size="20.0" />
+      </font>
+   </RadioButton>
+   <Label layoutX="343.0" layoutY="262.0" text="Starting Color">
+      <font>
+         <Font size="40.0" />
+      </font>
+   </Label>
+   <RadioButton fx:id="blueColorButton" layoutX="304.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchStartingColor" selected="true" styleClass="piece-radio-button">
+      <graphic>
+         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@img/large-blue.png" />
+         </ImageView>
+      </graphic>
+      <toggleGroup>
+         <ToggleGroup fx:id="color" />
+      </toggleGroup>
+   </RadioButton>
+   <RadioButton fx:id="orangeColorButton" layoutX="478.0" layoutY="322.0" mnemonicParsing="false" onAction="#switchStartingColor" styleClass="piece-radio-button" toggleGroup="$color">
+      <graphic>
+         <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@img/large-orange.png" />
+         </ImageView>
+      </graphic>
+   </RadioButton>
 </AnchorPane>

@@ -43,3 +43,23 @@
 .orange {
     -fx-background-color: #ff8c34;
 }
+
+.music-radio-button:selected > .radio > .dot {
+    -fx-background-color: #70c045;
+}
+
+.piece-radio-button > .radio {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0px;
+    -fx-padding: 0.0em;
+}
+
+.piece-radio-button:selected {
+    -fx-background-color: #70c045;
+    -fx-background-radius: 20;
+}
+
+.piece-radio-button:selected > .radio > .dot {
+    -fx-background-color: transparent;
+}

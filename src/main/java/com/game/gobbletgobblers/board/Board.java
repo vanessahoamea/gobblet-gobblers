@@ -1,5 +1,7 @@
 package com.game.gobbletgobblers.board;
 
+import com.game.gobbletgobblers.util.Global;
+
 import java.io.*;
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -158,7 +160,7 @@ public class Board implements Serializable
             }
         }
 
-        turn = Color.ORANGE;
+        turn = Global.getStartingColor();
         winner = null;
         freeSquares = 9;
         isMoving = false;

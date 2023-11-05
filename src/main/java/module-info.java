@@ -1,6 +1,7 @@
 module com.gobblets.gobbletgobblers {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
 
     opens com.game.gobbletgobblers to javafx.fxml;

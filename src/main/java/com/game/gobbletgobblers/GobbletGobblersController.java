@@ -4,6 +4,7 @@ import com.game.gobbletgobblers.board.Board;
 import com.game.gobbletgobblers.board.Color;
 import com.game.gobbletgobblers.board.Piece;
 import com.game.gobbletgobblers.board.Size;
+import com.game.gobbletgobblers.util.Global;
 import com.game.gobbletgobblers.util.PieceProxy;
 import com.game.gobbletgobblers.util.Popup;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +44,10 @@ public class GobbletGobblersController
     @FXML private Label mediumOrangeCount;
     @FXML private ImageView smallOrangeImage;
     @FXML private Label smallOrangeCount;
+    @FXML private RadioButton musicOnButton;
+    @FXML private RadioButton musicOffButton;
+    @FXML private RadioButton blueColorButton;
+    @FXML private RadioButton orangeColorButton;
 
     private GobbletGobblersController controller;
     private Board board;
@@ -64,6 +70,9 @@ public class GobbletGobblersController
         orangePieces = new Piece[3];
         for(int i=0; i<3; i++)
             orangePieces[i] = new Piece(Size.values()[i], Color.ORANGE);
+
+        if(Global.getIsMusicOn())
+            Global.playMusic();
     }
 
     public boolean getSavedProgress()
@@ -76,7 +85,7 @@ public class GobbletGobblersController
         try {
             switchScene(event, "game.fxml");
             controller.containerShadow.setVisible(true);
-            //controller.containerShadow.setLayoutX(14.0);
+            controller.containerShadow.setLayoutX(Global.getStartingContainerX());
         } catch(IOException e) {
             Popup.error(e);
         }
@@ -98,6 +107,10 @@ public class GobbletGobblersController
     {
         try {
             switchScene(event, "settings.fxml");
+            if(!Global.getIsMusicOn())
+                controller.musicOffButton.setSelected(true);
+            if(Global.getStartingColor() == Color.ORANGE)
+                controller.orangeColorButton.setSelected(true);
         } catch(IOException e) {
             Popup.error(e);
         }
@@ -127,6 +140,22 @@ public class GobbletGobblersController
                 Popup.error(e);
             }
         }
+    }
+
+    public void toggleMusic()
+    {
+        if(controller.musicOnButton.isSelected())
+            Global.playMusic();
+        else if(controller.musicOffButton.isSelected())
+            Global.stopMusic();
+    }
+
+    public void switchStartingColor()
+    {
+        if(controller.blueColorButton.isSelected())
+            Global.switchStartingColor(Color.BLUE);
+        else if(controller.orangeColorButton.isSelected())
+            Global.switchStartingColor(Color.ORANGE);
     }
 
     public void saveGame()
