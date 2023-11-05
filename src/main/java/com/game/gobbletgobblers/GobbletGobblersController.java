@@ -26,10 +26,10 @@ import java.util.Objects;
 
 public class GobbletGobblersController
 {
-    @FXML private Label turnLabel;
     @FXML private AnchorPane squaresContainer;
     @FXML private AnchorPane bluePiecesContainer;
     @FXML private AnchorPane orangePiecesContainer;
+    @FXML private AnchorPane containerShadow;
     @FXML private ImageView largeBlueImage;
     @FXML private Label largeBlueCount;
     @FXML private ImageView mediumBlueImage;
@@ -75,6 +75,8 @@ public class GobbletGobblersController
     {
         try {
             switchScene(event, "game.fxml");
+            controller.containerShadow.setVisible(true);
+            controller.containerShadow.setLayoutX(14.0);
         } catch(IOException e) {
             // TODO: show a proper error message to the user
         }
@@ -233,8 +235,7 @@ public class GobbletGobblersController
                 return;
             }
 
-            String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
-            controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
+            controller.containerShadow.setLayoutX(controller.board.getTurn() == Color.BLUE ? 686.0 : 14.0);
         } catch(IllegalStateException e) {
             System.out.println(e.getMessage());
         }
@@ -325,13 +326,12 @@ public class GobbletGobblersController
             }
         }
 
-        String currentPlayer = controller.board.getTurn() == Color.BLUE ? "Blue" : "Orange";
-        controller.turnLabel.setText("It's " + currentPlayer + "'s turn!");
+        controller.containerShadow.setLayoutX(controller.board.getTurn() == Color.BLUE ? 686.0 : 14.0);
     }
 
     private void endGame()
     {
-        controller.turnLabel.setText("Game over!");
+        controller.containerShadow.setVisible(false);
         controller.squaresContainer.setDisable(true);
         controller.bluePiecesContainer.setDisable(true);
         controller.orangePiecesContainer.setDisable(true);

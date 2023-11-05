@@ -29,6 +29,13 @@
     -fx-background-radius: 20;
 }
 
+.container-shadow {
+    -fx-background-color: gray;
+    -fx-background-radius: 20;
+    -fx-opacity: 0.45;
+    visibility: hidden;
+}
+
 .blue {
     -fx-background-color: #71cafe;
 }

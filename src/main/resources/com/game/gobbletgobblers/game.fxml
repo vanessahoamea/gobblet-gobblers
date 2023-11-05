@@ -24,11 +24,6 @@
          <Font size="20.0" />
       </font>
    </Button>
-   <Label fx:id="turnLabel" alignment="CENTER" layoutY="90.0" prefHeight="60.0" prefWidth="900.0" text="It's Orange's turn!">
-      <font>
-         <Font size="40.0" />
-      </font>
-   </Label>
    <AnchorPane fx:id="squaresContainer" layoutX="255.0" layoutY="170.0" maxHeight="390.0" maxWidth="390.0" minHeight="390.0" minWidth="390.0" styleClass="board-container">
       <Pane onMouseClicked="#handleSquareClick" prefHeight="130.0" prefWidth="130.0" style="-fx-border-width: 0 2 2 0; -fx-border-color: #ba6433;">
          <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
@@ -110,4 +105,5 @@
          </font>
       </Label>
    </AnchorPane>
+   <AnchorPane fx:id="containerShadow" layoutY="170.0" maxHeight="390.0" maxWidth="200.0" minHeight="390.0" minWidth="200.0" prefHeight="390.0" prefWidth="200.0" styleClass="container-shadow" />
 </AnchorPane>
