@@ -76,9 +76,9 @@ public class GobbletGobblersController
         try {
             switchScene(event, "game.fxml");
             controller.containerShadow.setVisible(true);
-            controller.containerShadow.setLayoutX(14.0);
+            //controller.containerShadow.setLayoutX(14.0);
         } catch(IOException e) {
-            // TODO: show a proper error message to the user
+            Popup.error(e);
         }
     }
 
@@ -90,7 +90,7 @@ public class GobbletGobblersController
             updateBoard();
             updateLabels();
         } catch(IOException | ClassNotFoundException e) {
-            // TODO: show a proper error message to the user
+            Popup.error(e);
         }
     }
 
@@ -99,7 +99,7 @@ public class GobbletGobblersController
         try {
             switchScene(event, "settings.fxml");
         } catch(IOException e) {
-            // TODO: show a proper error message to the user
+            Popup.error(e);
         }
     }
 
@@ -124,7 +124,7 @@ public class GobbletGobblersController
             try {
                 switchScene(event, "start.fxml");
             } catch(IOException e) {
-                // TODO: show a proper error message to the user
+                Popup.error(e);
             }
         }
     }
@@ -135,7 +135,7 @@ public class GobbletGobblersController
             controller.board.serialize();
             controller.savedProgress = true;
         } catch(IOException e) {
-            // TODO: show proper error message to user
+            Popup.error(e);
         }
     }
 

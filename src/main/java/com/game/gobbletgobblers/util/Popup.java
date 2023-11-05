@@ -55,4 +55,11 @@ public class Popup
         else
             alert.setContentText("The game ended in a draw! Better luck next time!");
     }
+
+    public static void error(Exception e)
+    {
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setTitle("Error");
+        alert.setContentText("There was an unexpected error: " + e.getMessage());
+    }
 }
