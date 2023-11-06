@@ -57,7 +57,7 @@
       <ImageView fx:id="largeBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="45.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/large-blue.png" />
       </ImageView>
-      <Label fx:id="largeBlueCount" alignment="CENTER" layoutX="100.0" layoutY="50.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
+      <Label fx:id="largeBlueCount" alignment="CENTER" layoutX="100.0" layoutY="50.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #4fbdfc;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -65,7 +65,7 @@
       <ImageView fx:id="mediumBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="145.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/medium-blue.png" />
       </ImageView>
-      <Label fx:id="mediumBlueCount" alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
+      <Label fx:id="mediumBlueCount" alignment="CENTER" layoutX="100.0" layoutY="150.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #4fbdfc;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
@@ -73,7 +73,7 @@
       <ImageView fx:id="smallBlueImage" fitHeight="100.0" fitWidth="100.0" layoutY="245.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
          <Image url="@img/small-blue.png" />
       </ImageView>
-      <Label fx:id="smallBlueCount" alignment="CENTER" layoutX="100.0" layoutY="250.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #71cafe;" text="2" textFill="#a6e3ff">
+      <Label fx:id="smallBlueCount" alignment="CENTER" layoutX="100.0" layoutY="250.0" prefHeight="90.0" prefWidth="90.0" style="-fx-background-color: #4fbdfc;" text="2" textFill="#a6e3ff">
          <font>
             <Font size="50.0" />
          </font>
