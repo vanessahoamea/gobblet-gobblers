@@ -1,5 +1,7 @@
-<img src="images/logo.png" style="display: block; width: 300px; margin: 0 auto;" />
-<p style="text-align: center;">This is a simple Java implementation of the board game Gobblet Gobblers. The interface is built with the GUI library JavaFX.</p>
+<div align="center">
+  <img src="images/logo.png" style="display: block; width: 300px; margin: 0 auto;" />
+</div>
+<p align="center">This is a simple Java implementation of the board game Gobblet Gobblers. The interface is built with the GUI library JavaFX.</p>
 
 # 📦 How to run
 - Install the [JavaFX SDK](https://openjfx.io/openjfx-docs/) and add it to the project

@@ -181,6 +181,7 @@ public class GobbletGobblersController
         if(savedProgress)
         {
             controller.board.reset();
+            controller.containerShadow.setVisible(true);
             updateBoard();
             updateLabels();
 

@@ -3,6 +3,7 @@ package com.game.gobbletgobblers.util;
 import com.game.gobbletgobblers.board.Color;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.util.Objects;
 import java.util.prefs.Preferences;
@@ -38,6 +39,7 @@ public class Global
         if(isMusicPlaying)
             return;
 
+        mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(Duration.ZERO));
         mediaPlayer.play();
         isMusicOn = true;
         isMusicPlaying = true;
